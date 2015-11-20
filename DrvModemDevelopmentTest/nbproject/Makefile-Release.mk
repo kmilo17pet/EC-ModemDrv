@@ -35,7 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/1679544224/DrvModem.o \
+	${OBJECTDIR}/DrvModem.o \
 	${OBJECTDIR}/main.o
 
 
@@ -63,10 +63,10 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/drvmodemdevelopmenttest.exe: ${OBJECT
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/drvmodemdevelopmenttest ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/1679544224/DrvModem.o: /cygdrive/D/GDrive/Proyects/libs/c/Drivers-Embedded/EC-ModemDrv/DrvModemDevelopmentTest/DrvModem.c 
-	${MKDIR} -p ${OBJECTDIR}/_ext/1679544224
+${OBJECTDIR}/DrvModem.o: DrvModem.c 
+	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1679544224/DrvModem.o /cygdrive/D/GDrive/Proyects/libs/c/Drivers-Embedded/EC-ModemDrv/DrvModemDevelopmentTest/DrvModem.c
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DrvModem.o DrvModem.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}

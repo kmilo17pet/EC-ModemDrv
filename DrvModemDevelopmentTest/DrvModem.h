@@ -1,11 +1,11 @@
 /* 
  * File:   Drv_Modem_WismoHL.h
- * Author: Eng. Juan Camilo G�mez Cadavid
- * A generalized AT-Based Driver for Sierra Wireless Modems : Wismo and HL devices
+ * Author: Eng. Juan Camilo Gómez Cadavid
+ * A generalized AT-Based Driver for  Modems
  * Requirements
  *  - A 1ms tick timer interrupt
  *  - A Receiver Interrupt (RX)
- * Revision: 4
+ * Revision: 7
  */
 
 #ifndef EC_DRV_MODEM
