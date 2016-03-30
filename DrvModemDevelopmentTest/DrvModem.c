@@ -45,7 +45,7 @@ int CellularModem_addOperatorInfo(ModemDrv_OperatorInfo_t *obj, const char *serv
 }
 /*============================================================================*/
 void CellularModem_InitDrv(void (*OutFcn)(char), void (*DebugFcn)(char), void(*PWRCtrlFcn)(unsigned char), void(*RSTCtrlFcn)(unsigned char)){
-    CellularModem_Waitms(500);
+    CellularModem_Waitms(1500);
     CellularModem_FlushInputBuffer();
     ModemDrv.u8contCellularframe = 0;
     ModemDrv.u8contMatch = 0;
@@ -173,10 +173,10 @@ int CellularModem_OnOff(unsigned char action){
         case CELLULAR_MODEM_OFF:
             CellularModem_SendString("AT+CPOF\r\n",CM_DRV_BOTH);
             CellularModem_ModemOff();                 // TurnOff Modem by Hardware (High level)
-            CellularModem_InitTIMEOUT(1000);
+            CellularModem_InitTIMEOUT(4000);
             while(CellularModem_GetFlagTIMEOUT()!= TIME_OUT_TRUE){}
             CellularModem_ModemReset();               // RESET Modem by Hardware
-            CellularModem_InitTIMEOUT(1000);
+            CellularModem_InitTIMEOUT(4000);
             while(CellularModem_GetFlagTIMEOUT()!= TIME_OUT_TRUE){}
             return OK_CELLULAR_RESPONSE;
         //break;
@@ -577,9 +577,14 @@ int CellularModem_SaveParams(void){
 }
 /*============================================================================*/
 int CellularModem_OperationBand(unsigned char gsmBand){
-	char cmd[20]={0x00};
+    char cmd[20]={0x00};
     #ifdef HW_QUECTEL_MODULE
-        strcpy(cmd,"AT+QBAND=\"GSM850_EGSM_DCS_PCS_MODE\"\r\n");
+	#ifdef HW_QUECTEL_CLASS_1
+            strcpy(cmd,"AT+QBAND=\"GSM850_EGSM_DCS_PCS_MODE\"\r\n");
+	#endif
+	#ifdef HW_QUECTEL_CLASS_2
+            strcpy(cmd,"AT+QCFG=\"band\",512,1\r\n");
+	#endif
     #else
         sprintf(cmd,"AT*PSRDBS=0,%d\r\n",gsmBand);
     #endif
